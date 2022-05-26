@@ -16,7 +16,6 @@ def parse_args() -> Any:
     parser.add_argument("pr_num", type=int)
     return parser.parse_args()
 
-
 def rebase_onto(pr: GitHubPR, repo: GitRepo, dry_run: bool = False) -> None:
     branch = f"pull/{pr.pr_num}/head"
     onto_branch = pr.default_branch()
