@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, NamedTuple, Tuple
 from gitutils import _check_output
 
-import rockset  # type: ignore[import]
+from rockset import Client, ParamDict  # type: ignore[import]
 import os
 import re
 
@@ -45,7 +45,7 @@ def get_latest_commits() -> List[str]:
     return commits
 
 def query_commits(commits: List[str], qlambda: Any) -> Any:
-    params = rockset.ParamDict()
+    params = ParamDict()
     params['shas'] = ",".join(commits)
     results = qlambda.execute(parameters=params)
 
@@ -92,7 +92,7 @@ def get_latest_green_commit(commits: List[str], results: Dict[str, Any]) -> Any:
     return None
 
 def main() -> None:
-    rs = rockset.Client(
+    rs = Client(
         api_server="api.rs2.usw2.rockset.com", api_key=os.environ["ROCKSET_API_KEY"]
     )
     qlambda = rs.QueryLambda.retrieve(
