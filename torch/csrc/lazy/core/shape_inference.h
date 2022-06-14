@@ -9,9 +9,11 @@
 #include <torch/csrc/lazy/core/shape.h>
 #include <vector>
 
-namespace torch{
+namespace torch {
 namespace lazy {
-
+// Turn clang-format off, as we rely on the whole signature being on one line
+// for codegen.
+// clang-format off
 TORCH_API std::vector<torch::lazy::Shape> compute_shape__adaptive_avg_pool2d(const at::Tensor & self, at::IntArrayRef output_size);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape__adaptive_avg_pool2d_backward(const at::Tensor & grad_output, const at::Tensor & self);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_abs(const at::Tensor & self);
@@ -39,6 +41,10 @@ TORCH_API std::vector<torch::lazy::Shape> compute_shape_l1_loss_backward(const a
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_log_sigmoid_backward(const at::Tensor & grad_output, const at::Tensor & self, const at::Tensor & buffer);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_log_sigmoid_forward(const at::Tensor & self);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_logdet(const at::Tensor & self);
+TORCH_API std::vector<torch::lazy::Shape> compute_shape_logical_and(at::Tensor & self, const at::Tensor & other);
+TORCH_API std::vector<torch::lazy::Shape> compute_shape_logical_not(at::Tensor & self);
+TORCH_API std::vector<torch::lazy::Shape> compute_shape_logical_or(at::Tensor & self, const at::Tensor & other);
+TORCH_API std::vector<torch::lazy::Shape> compute_shape_logical_xor(at::Tensor & self, const at::Tensor & other);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_masked_fill(const at::Tensor & self, const at::Tensor & mask, const at::Scalar & value);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_masked_fill(const at::Tensor & self, const at::Tensor & mask, const at::Tensor & value);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_max(const at::Tensor & self);
@@ -68,7 +74,7 @@ TORCH_API std::vector<torch::lazy::Shape> compute_shape_sum(const at::Tensor & s
 TORCH_API std::vector<torch::lazy::Shape> compute_shape__to_copy(const at::Tensor & self, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory, bool non_blocking, c10::optional<at::MemoryFormat> memory_format);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_trace(const at::Tensor & self);
 TORCH_API std::vector<torch::lazy::Shape> compute_shape_zero_functional(const at::Tensor & self);
-TORCH_API std::vector<torch::lazy::Shape> compute_shape_narrow_copy(const at::Tensor & self, int64_t dim, int64_t start, c10::SymInt length);
+TORCH_API std::vector<torch::lazy::Shape> compute_shape_narrow_copy_symint(const at::Tensor & self, int64_t dim, int64_t start, c10::SymInt length);
 
 // Non-Native ops
 TORCH_API std::vector<Shape> compute_shape_scalar(const at::Scalar& value, const at::ScalarType& type);
@@ -89,6 +95,6 @@ TORCH_API std::vector<Shape> compute_shape_select_view_update(const Output& targ
 TORCH_API std::vector<Shape> compute_shape_select(const Output& input, const int64_t& dim, const int64_t& start, const int64_t& end, const int64_t& stride);
 TORCH_API std::vector<Shape> compute_shape_squeeze(const Output& input, const int& dim);
 TORCH_API std::vector<Shape> compute_shape_unsqueeze(const Output& input, const int& dim);
-
+// clang-format on
 } // namespace lazy
 } // namespace torch
