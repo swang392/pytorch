@@ -19,8 +19,8 @@ jobs:
           python-version: 3.8
           architecture: x64
           
-      # - name: Checkout PyTorch
-      #   uses: pytorch/pytorch/.github/actions/checkout-pytorch@master
+      - name: Checkout PyTorch
+        uses: pytorch/pytorch/.github/actions/checkout-pytorch@master
 
       - name: Install Python Packages
         run: |
@@ -30,7 +30,7 @@ jobs:
         env:
           ROCKSET_API_KEY: ${{ secrets.ROCKSET_API_KEY }}
         run: |
-          output=$(python3 .github/scripts/print_latest_commits.py)
+          output=$(python3.8 .github/scripts/print_latest_commits.py)
           echo "::set-output name=latest_viable_sha::$output"
         id: get-latest-commit
 
