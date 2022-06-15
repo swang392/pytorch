@@ -19,7 +19,7 @@ def get_latest_commits() -> List[str]:
             "-n",
             "1",
             "--pretty=format:%H",
-            "origin/viable/strict",
+            "upstream/viable/strict",
         ],
         encoding="ascii",
     )
@@ -28,11 +28,11 @@ def get_latest_commits() -> List[str]:
             "git",
             "rev-list",
             f"{latest_viable_commit}^..HEAD",
-            "--remotes=*origin/master",
+            "--remotes=*upstream/master",
         ],
         encoding="ascii",
     ).splitlines()
-
+    # hello
     return commits
 
 def query_commits(commits: List[str], qlambda: Any) -> Any:
